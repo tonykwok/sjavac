@@ -1,8 +1,6 @@
 echo Compiling
-if [ ! "$ANT_HOME" = "" ]; then
-    ANTJAR=:$ANT_HOME/lib/ant.jar
-    ANTSRC=$(echo sjavac.ant/sjavac/ant/*.java)
-fi
+
+export JAVA_HOME=$JDK_HOME
 
 rm -rf /tmp/bin/*
 mkdir -p /tmp/bin 
@@ -10,11 +8,7 @@ $JAVA_HOME/bin/javac -cp $JAVA_HOME/lib/tools.jar$ANTJAR -implicit:none -XDignor
 -d /tmp/bin \
 jdk.sjavac/com/sun/tools/sjavac/*.java \
 jdk.sjavac/com/sun/tools/sjavac/*/*.java \
-jdk.sjavac/com/sun/tools/javac/util/StringUtils.java \
-sjavac.transforms/sjavac/transforms/*.java \
-sjavac.test/sjavac/test/*.java \
-sjavac.test/sjavac/test/util/*.java \
-$ANTSRC
+jdk.sjavac/com/sun/tools/javac/util/StringUtils.java
 
 echo Creating jar
 rm -f sjavac.jar
