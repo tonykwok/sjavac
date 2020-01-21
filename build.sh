@@ -1,14 +1,12 @@
-echo Compiling
-
 export JAVA_HOME=$JDK_HOME
 
+echo Compiling
 rm -rf /tmp/bin/*
 mkdir -p /tmp/bin 
-$JAVA_HOME/bin/javac -cp $JAVA_HOME/lib/tools.jar$ANTJAR -implicit:none -XDignore.symbol.file=true \
+$JAVA_HOME/bin/javac -cp $JAVA_HOME/lib/tools.jar -implicit:none -XDignore.symbol.file=true \
 -d /tmp/bin \
-jdk.sjavac/com/sun/tools/sjavac/*.java \
-jdk.sjavac/com/sun/tools/sjavac/*/*.java \
-jdk.sjavac/com/sun/tools/javac/util/StringUtils.java
+src/com/sun/tools/sjavac/*.java \
+src/com/sun/tools/sjavac/*/*.java
 
 echo Creating jar
 rm -f sjavac.jar
